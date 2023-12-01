@@ -105,6 +105,11 @@ title = """
 
 with gr.Blocks(css='style.css') as demo:
     gr.Markdown("<font color=red size=10><center>LaVie: Text-to-Video generation</center></font>")
+    gr.Markdown(
+        """<div style="text-align:center">
+        [<a href="https://arxiv.org/abs/2309.15103">Arxiv Report</a>] | [<a href="https://vchitect.github.io/LaVie-project/">Project Page</a>] | [<a href="https://github.com/Vchitect/LaVie">Github</a>]</div>
+        """
+    )
     with gr.Column():
         with gr.Row(elem_id="col-container"):
             # inputs = [prompt, seed_inp, ddim_steps]
