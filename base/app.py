@@ -121,7 +121,6 @@ with gr.Blocks(css='style.css') as demo:
     submit_btn.click(infer, inputs, outputs)
     # share_button.click(None, [], [], _js=share_js)
 
-    print(2)
 demo.queue(max_size=12).launch()
 
 
