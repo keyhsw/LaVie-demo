@@ -31,7 +31,7 @@ h1 {
 }
 """
 
-sd_path = args.pretrained_path + "/stable-diffusion-v1-4"
+sd_path = args.pretrained_path
 unet = get_models(args, sd_path).to(device, dtype=torch.float16)
 state_dict = find_model("./pretrained_models/lavie_base.pt")
 unet.load_state_dict(state_dict)
