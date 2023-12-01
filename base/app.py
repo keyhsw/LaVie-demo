@@ -21,12 +21,6 @@ config_path = "./base/configs/sample.yaml"
 args = OmegaConf.load("./base/configs/sample.yaml")
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-# ------- get model ---------------
-# model_t2V = model_t2v_fun(args)
-# model_t2V.to(device)
-# if device == "cuda":
-#     model_t2V.enable_xformers_memory_efficient_attention()
-
 css = """
 h1 {
   text-align: center;
@@ -77,7 +71,6 @@ def infer(prompt, seed_inp, ddim_steps,cfg, infer_type):
     if device == "cuda":
         model.enable_xformers_memory_efficient_attention()
     videos = model(prompt, video_length=16, height = 320, width= 512, num_inference_steps=ddim_steps, guidance_scale=cfg).video
-    print(videos[0].shape)
     if not os.path.exists(args.output_folder):
         os.mkdir(args.output_folder)
     torchvision.io.write_video(args.output_folder + prompt[0:30].replace(' ', '_') + '-'+str(seed_inp)+'-'+str(ddim_steps)+'-'+str(cfg)+ '-.mp4', videos[0], fps=8)
@@ -85,9 +78,6 @@ def infer(prompt, seed_inp, ddim_steps,cfg, infer_type):
 
     return args.output_folder + prompt[0:30].replace(' ', '_') + '-'+str(seed_inp)+'-'+str(ddim_steps)+'-'+str(cfg)+ '-.mp4'
 
-
-# def clean():
-#     return gr.Video.update(value=None)
 
 title = """
     <div style="text-align: center; max-width: 700px; margin: 0 auto;">
@@ -118,8 +108,6 @@ with gr.Blocks(css='style.css') as demo:
     )
     with gr.Column():
         with gr.Row(elem_id="col-container"):
-            # inputs = [prompt, seed_inp, ddim_steps]
-            # outputs = [video_out]
             with gr.Column():
                     
                 prompt = gr.Textbox(value="a corgi walking in the park at sunrise, oil painting style", label="Prompt", placeholder="enter prompt", show_label=True, elem_id="prompt-in", min_width=200, lines=2)
@@ -127,12 +115,9 @@ with gr.Blocks(css='style.css') as demo:
                 ddim_steps = gr.Slider(label='Steps', minimum=50, maximum=300, value=50, step=1)
                 seed_inp = gr.Slider(value=-1,label="seed (for random generation, use -1)",show_label=True,minimum=-1,maximum=2147483647)
                 cfg = gr.Number(label="guidance_scale",value=7.5)
-                # seed_inp = gr.Slider(label="Seed", minimum=0, maximum=2147483647, step=1, value=400, elem_id="seed-in")
-
 
             with gr.Column():
                 submit_btn = gr.Button("Generate video")
-                # clean_btn = gr.Button("Clean video")
                 video_out = gr.Video(label="Video result", elem_id="video-output")
 
             inputs = [prompt, seed_inp, ddim_steps, cfg, infer_type]
@@ -157,10 +142,8 @@ with gr.Blocks(css='style.css') as demo:
             cache_examples=False,
         )
         ex.dataset.headers = [""]
-        
-    # clean_btn.click(clean, inputs=[], outputs=[video_out], queue=False)
+         
     submit_btn.click(infer, inputs, outputs)
-    # share_button.click(None, [], [], _js=share_js)
 
 demo.queue(max_size=12).launch()
 
