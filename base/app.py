@@ -158,7 +158,7 @@ with gr.Blocks(css='style.css') as demo:
         )
         ex.dataset.headers = [""]
         
-    clean_btn.click(clean, inputs=[], outputs=[video_out], queue=False)
+    # clean_btn.click(clean, inputs=[], outputs=[video_out], queue=False)
     submit_btn.click(infer, inputs, outputs)
     # share_button.click(None, [], [], _js=share_js)
 
