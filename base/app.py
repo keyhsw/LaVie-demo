@@ -78,12 +78,9 @@ def infer(prompt, seed_inp, ddim_steps,cfg, infer_type):
 
     return args.output_folder + prompt[0:30].replace(' ', '_') + '-'+str(seed_inp)+'-'+str(ddim_steps)+'-'+str(cfg)+ '-.mp4'
 
-print(1)
 
 # def clean():
-#     return gr.Image.update(value=None, visible=False), gr.Video.update(value=None)
-def clean():
-    return gr.Video.update(value=None)
+#     return gr.Video.update(value=None)
 
 title = """
     <div style="text-align: center; max-width: 700px; margin: 0 auto;">
@@ -123,7 +120,7 @@ with gr.Blocks(css='style.css') as demo:
 
             with gr.Column():
                 submit_btn = gr.Button("Generate video")
-                clean_btn = gr.Button("Clean video")
+                # clean_btn = gr.Button("Clean video")
                 video_out = gr.Video(label="Video result", elem_id="video-output")
 
             inputs = [prompt, seed_inp, ddim_steps, cfg, infer_type]
