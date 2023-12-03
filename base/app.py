@@ -125,7 +125,7 @@ with gr.Blocks(css='style.css') as demo:
 
         ex = gr.Examples(
             examples = [['a corgi walking in the park at sunrise, oil painting style',400,50,7,'ddim'],
-                    ['a cut teddy bear reading a book in the park, oil painting style, high quality',700,50,7,'ddim'],
+                    ['a cute teddy bear reading a book in the park, oil painting style, high quality',700,50,7,'ddim'],
                     ['an epic tornado attacking above a glowing city at night, the tornado is made of smoke, highly detailed',230,50,7,'ddim'],
                     ['a jar filled with fire, 4K video, 3D rendered, well-rendered',400,50,7,'ddim'],
                     ['a teddy bear walking in the park, oil painting style, high quality',400,50,7,'ddim'],
