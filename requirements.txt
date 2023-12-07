@@ -1,4 +1,4 @@
-accelerate==0.19.0
+accelerate==0.24.1
 av==10.0.0
 decord==0.6.0
 diffusers[torch]==0.16.0
