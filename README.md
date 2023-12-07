@@ -8,7 +8,7 @@ sdk: gradio
 sdk_version: 4.3.0
 app_file: base/app.py
 pinned: false
-python_version: 3.11.5
+
 ---
 
 # LaVie: High-Quality Video Generation with Cascaded Latent Diffusion Models
