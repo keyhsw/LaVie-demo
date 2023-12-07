@@ -139,7 +139,7 @@ with gr.Blocks(css='style.css') as demo:
             fn = infer,
             inputs=[prompt, seed_inp, ddim_steps,cfg,infer_type],
             outputs=[video_out],
-            cache_examples=False,
+            cache_examples=True,
         )
         ex.dataset.headers = [""]
          
