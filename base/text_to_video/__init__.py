@@ -10,7 +10,7 @@ from diffusers.schedulers import DDIMScheduler, DDPMScheduler, PNDMScheduler, Eu
 from diffusers.models import AutoencoderKL
 from transformers import CLIPTokenizer, CLIPTextModel, CLIPTextModelWithProjection
 from omegaconf import OmegaConf
-
+import random
 import os, sys
 sys.path.append(os.path.split(sys.path[0])[0])
 from models import get_models
@@ -39,7 +39,8 @@ def model_t2v_fun(args):
     return VideoGenPipeline(vae=vae, text_encoder=text_encoder_one, tokenizer=tokenizer_one, scheduler=scheduler, unet=unet)
 
 def setup_seed(seed):
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
+    # torch.manual_seed(seed)
+    # torch.cuda.manual_seed_all(seed)
+    random.seed(seed)
 	
 
