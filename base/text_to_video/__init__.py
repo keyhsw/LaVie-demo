@@ -39,8 +39,8 @@ def model_t2v_fun(args):
     return VideoGenPipeline(vae=vae, text_encoder=text_encoder_one, tokenizer=tokenizer_one, scheduler=scheduler, unet=unet)
 
 def setup_seed(seed):
-    # torch.manual_seed(seed)
-    # torch.cuda.manual_seed_all(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
     random.seed(seed)
 	
 
